@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  description: Serviço para exibição de dados de produtos aleatórios.
+  version: 1.0.0
+servers:
+  - url: https://api.products.com/v1
+    description: Servidor de produção
+  - url: hhttp://staging_api.products.com/v1
+    description: Servidor de Staging / Teste
+  - url: http://localhost:3000/
+    description: Servidor de desenvolvimento
+paths:
+  /clients:
+    get:
+      summary: Retorna uma lista de clientes
+      description: Retorna uma lista de todos os clientes.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Clients'
+  /products:
+    get:
+      summary: Retorna uma lista de produtos
+      description: Retorna uma lista de todos os produtos disponíveis no sistema.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    Clients:
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 1
+          description: Identificação do cliente
+        nome:
+          type: string
+          example: Ana
+          description: Nome do produto
+        sobrenome:
+          type: string
+          example: Santos
+          description: Sobrenome do cliente
+        endereco:
+          type: string
+          example: "Rua 1, numero X"
+          description: Endereço do cliente
+    Product:
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 1
+          description: Identificação do produto
+        description:
+          type: string
+          example: Synergistic Wool Hat
+          description: Nome do produto
